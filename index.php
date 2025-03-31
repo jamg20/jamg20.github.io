@@ -1,31 +1,30 @@
 <!DOCTYPE html>
-<html lang="es-MX">
+<html lang="es">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="formulario">
-        <div class="text-center">
-            <img src="imagenes/beto.png" class="logo" alt="Logo">
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="card p-4 shadow" style="width: 300px;">
+        <h3 class="text-center mb-3">Iniciar Sesión</h3>
+        <form>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" placeholder="Ingrese su correo" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+        </form>
+        <div class="text-center mt-3">
+            <a href="#">¿Olvidaste tu contraseña?</a>
         </div>
-        <form action="validar.php" method="post" onsubmit="mostrarSpinner()">
-            <legend>Inicio de Sesión</legend>
-
-            <div class="mb-3">
-                <label for="nombre1" class="form-label">Usuario</label>
-                <input type="text" id="nombre1" name="nombre1" class="form-control" placeholder="Ingresa tu usuario" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="password1" class="form-label">Contraseña</label>
-                <input type="password" id="password1" name="password1" class="form-control" placeholder="Ingresa tu contraseña" required>
-            </div>
-
-            <div class="d-grid">
-                <button type="submit" class="btn btn-danger">Aceptar</button>
-            </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
