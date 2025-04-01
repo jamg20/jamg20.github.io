@@ -1,5 +1,20 @@
+<?php
+session_start(); // Iniciar la sesión
+
+// Verificar si el usuario ha iniciado sesión
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true){
+    // Si el usuario ya ha iniciado sesión, redirigir a la página home.php
+    header("Location: home.php");
+    exit;
+}
+// Verificar si se enviaron datos de inicio de sesión
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Procesar los datos del formulario y verificar las credenciales del usuario
+    // Resto del código para verificar las credenciales y manejar la autenticación
+}
+?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
