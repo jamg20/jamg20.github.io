@@ -1,5 +1,5 @@
 <?php
-include('BD.php'); // Incluir archivo de conexión a la base de datos
+include('BD.html'); // Incluir archivo de conexión a la base de datos
 
 // Verificar si se enviaron datos de inicio de sesión
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -32,16 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['user_id'] = $usuario_data['id_usuario'];
 
         // Redirigir a la página de inicio
-        header('location: home.php');
+        header('location: home.html');
         exit;
     } else {
         // Redirigir a la página de error con mensaje
-        header("Location: mensaje_error_autenticacion_user.php?titulo=Error de Inicio de Sesión&mensaje=El usuario o la contraseña son incorrectos.&redireccion=index.php");
+        header("Location: mensaje_error_autenticacion_user.php?titulo=Error de Inicio de Sesión&mensaje=El usuario o la contraseña son incorrectos.&redireccion=index.html");
         exit;
     }
 } else {
     // Si no se recibieron datos de inicio de sesión mediante POST, redirigir al formulario de inicio de sesión
-    header('location: index.php');
+    header('location: index.html');
     exit;
 }
 
