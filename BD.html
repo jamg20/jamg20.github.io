@@ -1,0 +1,21 @@
+<?php
+date_default_timezone_set('America/Mexico_City'); // Definir la zona horaria
+
+// Configuración de conexión
+$Servidor = '127.0.0.1:5060'; // Cambia si no estás seguro del puerto
+$BaseDeDatos = 'jmurillo';
+$Usuario = 'jmurillo';
+$Contra = '06333f12a6';
+
+// Crear la conexión
+$Conexion = new mysqli($Servidor, $Usuario, $Contra, $BaseDeDatos);
+
+// Verificar conexión
+if ($Conexion->connect_error) {
+    die("Error de conexión: " . $Conexion->connect_error);
+} else {
+    // Mensaje de éxito (puedes comentarlo en producción)
+    //echo "Conexión establecida exitosamente.<br>";
+}
+?>
+
