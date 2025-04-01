@@ -3,8 +3,8 @@ session_start(); // Iniciar la sesión
 
 // Verificar si el usuario ha iniciado sesión
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true){
-    // Si el usuario ya ha iniciado sesión, redirigir a la página home.php
-    header("Location: home.php");
+    // Si el usuario ya ha iniciado sesión, redirigir a la página home.html
+    header("Location: home.html");
     exit;
 }
 // Verificar si se enviaron datos de inicio de sesión
