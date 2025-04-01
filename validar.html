@@ -1,0 +1,53 @@
+<?php
+include('BD.php'); // Incluir archivo de conexión a la base de datos
+
+// Verificar si se enviaron datos de inicio de sesión
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Escapar las entradas para evitar inyección SQL
+    $usuario = mysqli_real_escape_string($Conexion, $_POST['nombre1']);
+    $contrasena = mysqli_real_escape_string($Conexion, $_POST['password1']);
+
+    // Consulta SQL para verificar las credenciales del usuario
+    $consulta = "
+        SELECT u.*, p.nombre_privilegio, e.estado_usuario 
+        FROM usuarios u
+        INNER JOIN privilegios_user p ON u.id_privilegios = p.id_privilegios
+        INNER JOIN estado_user e ON u.id_estado_user = e.id_estado_user
+        WHERE u.nombre_usuario = '$usuario' AND u.contraseña_usuario = '$contrasena'";
+    $resultado = mysqli_query($Conexion, $consulta);
+
+    // Verificar si la consulta devuelve resultados
+    if ($resultado && mysqli_num_rows($resultado) > 0) {
+        // Iniciar sesión
+        session_start();
+
+        // Obtener datos del usuario
+        $usuario_data = mysqli_fetch_assoc($resultado);
+
+        // Guardar datos del usuario en la sesión
+        $_SESSION['loggedin'] = true;
+        $_SESSION['nombre1'] = $usuario_data['nombre_usuario'];
+        $_SESSION['privilegio'] = $usuario_data['nombre_privilegio'];
+        $_SESSION['estado_user'] = $usuario_data['estado_usuario'];
+        $_SESSION['user_id'] = $usuario_data['id_usuario'];
+
+        // Redirigir a la página de inicio
+        header('location: home.php');
+        exit;
+    } else {
+        // Redirigir a la página de error con mensaje
+        header("Location: mensaje_error_autenticacion_user.php?titulo=Error de Inicio de Sesión&mensaje=El usuario o la contraseña son incorrectos.&redireccion=index.php");
+        exit;
+    }
+} else {
+    // Si no se recibieron datos de inicio de sesión mediante POST, redirigir al formulario de inicio de sesión
+    header('location: index.php');
+    exit;
+}
+
+// Cerrar conexión y liberar resultados
+if (isset($resultado)) {
+    mysqli_free_result($resultado);
+}
+mysqli_close($Conexion);
+?>
